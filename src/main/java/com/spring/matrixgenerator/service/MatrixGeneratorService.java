@@ -14,7 +14,7 @@ public class MatrixGeneratorService {
 		
 		for(int i=0; i < values.length; i++) {
 			for (int k=0; k< values[i].length; k++) {
-				values[i][k]= (int) (Math.random()* 100);
+				values[i][k]= (int) (Math.random()* 1000);
 			}
 				
 		}

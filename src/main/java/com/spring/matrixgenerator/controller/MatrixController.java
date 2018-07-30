@@ -26,19 +26,18 @@ public class MatrixController {
 		
 	}
 	
-	@RequestMapping(value = "/matrixgenerator", method = RequestMethod.GET)
-	public ModelAndView generateMatrix(Numbers numbers) {
-	
-		ModelAndView modelAndView = new ModelAndView("matrixgenerator");
-
-		 modelAndView.addObject("values", MatrixService.generateMatrix(numbers));
-		 modelAndView.setViewName("matrixgenerator");
-		return modelAndView;
+	@RequestMapping("/matrixgenerator")
+	public String generateMatrix(Model model) {
+		
+		model.addAttribute("numbers", new Numbers());	
+		return "matrixgenerator";
 		
 	}
 	@RequestMapping(value = "/matrixgenerator", method = RequestMethod.POST)
-	public String generateMatrixForm(Numbers numbers) {
-		MatrixService.generateMatrix(numbers);
+	public String generateMatrixForm(@ModelAttribute("numbers") Numbers numbers,Model model) {
+		
+		int[][] array= MatrixService.generateMatrix(numbers);
+		model.addAttribute("array", array);
 		return "matrixgenerator";
 		
 	}
